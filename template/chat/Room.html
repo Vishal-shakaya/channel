@@ -23,7 +23,7 @@
 		
 		ChatSocket.onmessage = function(event){
 			 pure_json =  JSON.parse(event.data)
-			 document.querySelector('#messages').value += (pure_json.message ); 
+			 document.querySelector('#messages').value += (pure_json.message  ); 
 		}
 
 		ChatSocket.onclose = function(event){

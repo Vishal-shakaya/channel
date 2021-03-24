@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>{{room_name}}</h1>
+	<h2>Chat Box</h2>
+	<textarea cols="50" rows="5" id="messages">
+		
+	</textarea>
+	<input type="button" name="send" id="send_message" value="send" onclick="SendMessage()">
+</body>
+
+	<script type="text/javascript">
+		let loc = window.location;
+		let socketProto = 'ws://'
+		if(loc.protocol =='https:'){
+			socketProto ='wss://'
+		}
+		let socketLocation = socketProto+loc.host +loc.pathname
+		let ChatSocket = new WebSocket(socketLocation);
+		
+		ChatSocket.onmessage = function(event){
+			 pure_json =  JSON.parse(event.data)
+			 document.querySelector('#messages').value += (pure_json.message ); 
+		}
+
+		ChatSocket.onclose = function(event){
+		}
+
+		function SendMessage(){
+		let  messages = document.getElementById('messages')
+		let  msg_value = messages.value;
+		ChatSocket.send(
+			JSON.stringify(
+				{
+					'message':msg_value
+				}));
+		}
+		// Create socket 
+
+	</script>
+</html>

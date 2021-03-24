@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<h1>Chat room Name </h1>
+	<input type="input" name="Room Name" id="room_name">
+	<button onclick="CreateRoom()">submit</button>
+</body>
+
+	<script type="text/javascript">
+		function CreateRoom(){
+			let room = document.getElementById('room_name').value;
+			room.innerText =''
+			window.location.href = window.location.href+room;
+			
+		}
+	</script>
+</html>
